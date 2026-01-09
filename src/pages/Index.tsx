@@ -86,15 +86,14 @@ const Index = () => {
             <a href="#about" className="text-muted-foreground hover:text-primary transition-colors">О нас</a>
             <a href="#contacts" className="text-muted-foreground hover:text-primary transition-colors">Контакты</a>
           </nav>
-          <Button className="gap-2" onClick={() => setBookingOpen(true)}>
-            <Icon name="Calendar" size={18} />
-            Записаться
-          </Button>
-        </div>
-      </header>
-
-      <Dialog open={bookingOpen} onOpenChange={setBookingOpen}>
-        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <Dialog open={bookingOpen} onOpenChange={setBookingOpen}>
+            <DialogTrigger asChild>
+              <Button className="gap-2">
+                <Icon name="Calendar" size={18} />
+                Записаться
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
               <DialogHeader>
                 <DialogTitle className="font-heading">Онлайн-запись на ремонт</DialogTitle>
                 <DialogDescription>
@@ -175,8 +174,10 @@ const Index = () => {
                   Подтвердить запись
                 </Button>
               </div>
-        </DialogContent>
-      </Dialog>
+            </DialogContent>
+          </Dialog>
+        </div>
+      </header>
 
       <section className="relative h-[600px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -194,10 +195,14 @@ const Index = () => {
           <p className="text-xl md:text-2xl mb-8 max-w-2xl">
             Более 15 лет опыта. Качественный ремонт любой сложности.<br />Гарантия на все виды работ.
           </p>
-          <Button size="lg" className="gap-2 text-lg px-8 animate-scale-in" onClick={() => setBookingOpen(true)}>
-            <Icon name="Phone" size={20} />
-            Записаться на ремонт
-          </Button>
+          <Dialog open={bookingOpen} onOpenChange={setBookingOpen}>
+            <DialogTrigger asChild>
+              <Button size="lg" className="gap-2 text-lg px-8 animate-scale-in">
+                <Icon name="Phone" size={20} />
+                Записаться на ремонт
+              </Button>
+            </DialogTrigger>
+          </Dialog>
         </div>
       </section>
 
@@ -353,10 +358,14 @@ const Index = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <Button className="w-full" size="lg" onClick={() => setBookingOpen(true)}>
-                  <Icon name="Calendar" className="mr-2" size={20} />
-                  Записаться на ремонт
-                </Button>
+                <Dialog open={bookingOpen} onOpenChange={setBookingOpen}>
+                  <DialogTrigger asChild>
+                    <Button className="w-full" size="lg">
+                      <Icon name="Calendar" className="mr-2" size={20} />
+                      Записаться на ремонт
+                    </Button>
+                  </DialogTrigger>
+                </Dialog>
                 <div className="mt-6 pt-6 border-t">
                   <p className="text-sm text-muted-foreground text-center">
                     Бесплатная диагностика при записи через сайт
